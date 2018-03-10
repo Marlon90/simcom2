@@ -6,8 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -28,7 +26,6 @@ public class CommandList implements CommandMachine {
 
 		Elements allLists = doc.getElementsByClass("mw-category");
 
-		String commands = allLists.get(0).text().replaceAll(" ", "_").replaceAll("_%", "_%25_");
 		String returner = "";
 		for (Element element : allLists.get(0).getAllElements()) {
 			for (Element e : element.getElementsByTag("li")) {
@@ -81,9 +78,9 @@ public class CommandList implements CommandMachine {
 						if (syntax.contains("Return Value")) {
 							syntax = syntax.split("Return Value")[0];
 						}
-						syntax = syntax.replaceAll("Syntax:", "").trim().replaceAll("\\u00a0.+", "")
-						.replaceAll("  .+", "") + "\n";
-						
+						syntax = syntax.replaceAll("Syntax:", "").trim().replaceAll("\\u00a0.+", "").replaceAll("  .+",
+								"") + "\n";
+
 						writer.write(syntax);
 					}
 
