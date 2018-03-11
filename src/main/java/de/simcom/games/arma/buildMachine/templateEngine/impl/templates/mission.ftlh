@@ -1,33 +1,32 @@
 version=52;
-class EditorData
-{
+class EditorData {
+	
 	moveGridStep=1;
 	angleGridStep=0;
 	scaleGridStep=0;
 	autoGroupingDist=0;
-
-	class Camera
-	{
+	toggles=1;
+	
+	class Camera {
 		pos[]={2951.9795,38.534729,2080.355};
 		dir[]={-0.026856616,-0.44948402,0.89289159};
 		up[]={-0.013513672,0.8932879,0.44928241};
 		aside[]={0.99955565,-3.9199222e-008,0.030065063};
 	};
 };
-binarizationWanted=0;
 
+binarizationWanted=0;
 randomSeed=4444425;
 
-class ScenarioData
-{
+class ScenarioData {
 	author="SIMCOM";
 };
 
-class Mission
-{
-	class Intel
-	{
-		timeOfChanges= ${weatherData.timeOfChanges} ;
+class Mission {
+	
+	class Intel {
+		
+		timeOfChanges=${weatherData.timeOfChanges};
 		startWeather=${weatherData.startWeather};
 		startWind=${weatherData.startWind};
 		startWaves=${weatherData.startWaves};
@@ -43,27 +42,30 @@ class Mission
 		startFogDecay=${weatherData.startFogDecay};
 		forecastFogDecay=${weatherData.forecastFogDecay};
 	};
-	class Entities
-	{
+	
+	class Entities {
+		
 		items=${itemData.items};
-		class Item${itemData.itemMainNumber}
-		{
+		
+		class Item${itemData.itemMainNumber} {
+			
 			dataType="Group";
-			side="West";
-			class Entities
-			{
+			side="${itemData.side}";
+			
+			class Entities {
 				items=1;
-				class Item${itemData.itemSubNumber}
-				{
-					dataType= ${itemData.dataType}//"Object";
-					class PositionInfo
-					{
+				
+				class Item${itemData.itemSubNumber} {
+					
+					dataType= "${itemData.dataType}";
+					
+					class PositionInfo {
 						position[]={${itemData.position}};
 					};
-					side=${itemData.side};
+				
+					side="${itemData.side}";
 					
-					class Attributes
-					{
+					class Attributes {
 					
 						isPlayer=${itemData.isPlayer};
 					};
@@ -72,12 +74,7 @@ class Mission
 					
 				};
 			};
-			class Attributes
-			{
-			};
-			
-			atlOffset=0;
+			class Attributes{};
 		};
 	};
-	
 };
