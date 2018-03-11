@@ -1,21 +1,30 @@
 package de.simcom.games.arma.buildMachine.data;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import de.simcom.games.arma.buildMachine.enums.ControlStructurType;
+import de.simcom.games.arma.buildMachine.enums.TemplateType;
 
 public interface Data {
 
-    void setData(ControlStructurType cst, String condition, String statement);
+	/**
+	 * Creates a new Map<String, Object>.
+	 * <p>
+	 * Loads the given data object into the map with String id as the identifier for
+	 * the template.
+	 * <p>
+	 * 
+	 * @return Map<String,Object> dataMap
+	 */
+	default Map<String, Object> getMappedData(String id) {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		dataMap.put(id, this);
+		return dataMap;
+	};
 
-    Map<String, Object> getData();
-    
-    Map<String, Object> getMappedData();
-    
-    String getCondition();
+	Map<String, Object> getMappedData();
 
-    String getStatement();
+	TemplateType getTemplateType();
 
-    ControlStructurType getControlStructurType();
-
+	void setTemplateType(TemplateType templateType);
 }

@@ -20,53 +20,49 @@ import freemarker.template.TemplateNotFoundException;
 
 public class ConstructorImpl implements Constructor {
 
+	private Configuration cfg;
 
-    private Configuration cfg;
-    
+	public void doStatement(Data data) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,
+			IOException, TemplateException {
 
-    @Override
-    public void doStatement(Data data) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,
-	    IOException, TemplateException {
+		checkCfg();
 
-	checkCfg();
+		Template template = cfg.getTemplate(data.getTemplateType().getPath());
+		URL directory = ConstructorImpl.class.getResource("");
+		File file = new File(directory.getPath() + "/output.sqf");
+		Writer bw = new BufferedWriter(new FileWriter(file, true));
 
-	Template template = cfg.getTemplate(data.getControlStructurType().getPath());
-	URL directory = ConstructorImpl.class.getResource("");
-	File file = new File(directory.getPath() + "/output.sqf");
-	Writer bw = new BufferedWriter(new FileWriter(file, true));
+		template.process(((Data) data).getMappedData("data"), bw);
 
-	template.process(data.getMappedData(), bw);
-
-	bw.flush();
-	bw.close();
-    }
-
-    @Override
-    public void doStatementConsole(Data data) throws TemplateNotFoundException, MalformedTemplateNameException,
-	    ParseException, IOException, TemplateException {
-	checkCfg();
-	Template template = cfg.getTemplate(data.getControlStructurType().getPath());
-
-	Writer out = new OutputStreamWriter(System.out);
-
-	template.process(data.getMappedData(), out);
-
-	out.flush();
-	out.close();
-
-    }
-
-    @Override
-    public void setTemplateEngine() throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,
-	    IOException, TemplateException {
-	this.cfg = TemplateEngineFactory.getInstance("templates/");
-    }
-
-    private void checkCfg() throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,
-	    IOException, TemplateException {
-	if (cfg == null) {
-	    setTemplateEngine();
+		bw.flush();
+		bw.close();
 	}
-    }
+
+	public void doStatementConsole(Data data) throws TemplateNotFoundException, MalformedTemplateNameException,
+			ParseException, IOException, TemplateException {
+		checkCfg();
+		Template template = cfg.getTemplate(data.getTemplateType().getPath());
+
+		Writer out = new OutputStreamWriter(System.out);
+
+		template.process(((Data) data).getMappedData(), out);
+
+		out.flush();
+		out.close();
+
+	}
+
+	@Override
+	public void setTemplateEngine() throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,
+			IOException, TemplateException {
+		this.cfg = TemplateEngineFactory.getInstance("templates/");
+	}
+
+	private void checkCfg() throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,
+			IOException, TemplateException {
+		if (cfg == null) {
+			setTemplateEngine();
+		}
+	}
 
 }

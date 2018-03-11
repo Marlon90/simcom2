@@ -1,12 +1,12 @@
 package de.simcom.games.arma.buildMachine.enums;
 
-public enum ControlStructurType {
+public enum TemplateType {
 
-	IF("if.ftlh"), IFELSE("ifelse.ftlh"), WHILE("while.ftlh"), FOR("for.ftlh"), FOREACH("foreach.ftlh");
+	IF("if.ftlh"), IFELSE("ifelse.ftlh"), WHILE("while.ftlh"), FOR("for.ftlh"), FOREACH("foreach.ftlh"), MISSION("mission.ftlh");
 
 	private String template;
 
-	ControlStructurType(String template) {
+	TemplateType(String template) {
 		this.template = template;
 	}
 
