@@ -9,8 +9,12 @@ public class PositionInfo {
 		this.position = position;
 	}
 
-	public double[] getPosition() {
-		return position;
+	public String getPosition() {
+		String returner = "";
+		for (int i = 0; i < position.length; i++) {
+			returner += String.valueOf(position[i]);
+		}
+		return returner;
 	}
 
 	public void setPosition(double[] position) {

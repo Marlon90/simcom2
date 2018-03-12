@@ -1,38 +1,28 @@
 package de.simcom.games.arma.buildMachine.data.impl.mission.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Item {
 
 	private String id;
-	private List<Entities> entities;
+	private Entities entity;
 	private PositionInfo positionInfo;
 	private Attributes attributes;
 	private String dataType;
 	private String side;
 	private String type;
 
-	public Item(String id) {
-		this.id = id;
+	public Item() {
 	}
 
-	public Item(String id, Entities entity) {
-		this.id = id;
-		this.entities = new ArrayList<Entities>();
-		this.entities.add(entity);
+	public Entities getEntity() {
+		return entity;
+	}
+
+	public void setEntity(Entities entity) {
+		this.entity = entity;
 	}
 
 	public String getId() {
 		return id;
-	}
-
-	public List<Entities> getEntities() {
-		return entities;
-	}
-
-	public void setEntities(List<Entities> entities) {
-		this.entities = entities;
 	}
 
 	public PositionInfo getPositionInfo() {

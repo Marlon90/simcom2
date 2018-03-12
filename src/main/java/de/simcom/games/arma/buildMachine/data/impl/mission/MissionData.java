@@ -1,6 +1,7 @@
 package de.simcom.games.arma.buildMachine.data.impl.mission;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import de.simcom.games.arma.buildMachine.data.Data;
@@ -27,12 +28,12 @@ public class MissionData implements Data {
 	@Override
 	public Map<String, Object> getMappedData() {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
+
 		dataMap.put(intel.toString(), intel);
 		dataMap.put(entities.toString(), entities);
-		for (Item item : entities.getItems()) {
-			dataMap.put(item.getId(), item);
-		}
-		
+		List<Item> items = entities.getItems();
+		dataMap.put("items", items);
+
 		return dataMap;
 	}
 

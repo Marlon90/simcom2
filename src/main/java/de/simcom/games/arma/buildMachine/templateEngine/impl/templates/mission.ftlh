@@ -26,55 +26,57 @@ class Mission {
 
 	class Intel {
 
-		timeOfChanges=${intel.timeOfChanges};
-		startWeather=${intel.startWeather};
-		startWind=${intel.startWind};
-		startWaves=${intel.startWaves};
-		forecastWeather=${intel.forecastWeather};
-		forecastWind=${intel.forecastWind};
-		forecastWaves=${intel.forecastWaves};
-		wavesForced=${intel.wavesForced};
-		windForced=${intel.windForced};
-		year=${intel.year};
-		month=${intel.month};
-		day=${intel.day};
-		hour=${intel.hour};
-		startFogDecay=${intel.startFogDecay};
-		forecastFogDecay=${intel.forecastFogDecay};
+		timeOfChanges=${intel.weatherData.timeOfChanges};
+		startWeather=${intel.weatherData.startWeather};
+		startWind=${intel.weatherData.startWind};
+		startWaves=${intel.weatherData.startWaves};
+		forecastWeather=${intel.weatherData.forecastWeather};
+		forecastWind=${intel.weatherData.forecastWind};
+		forecastWaves=${intel.weatherData.forecastWaves};
+		wavesForced=${intel.weatherData.wavesForced};
+		windForced=${intel.weatherData.windForced};
+		year=${intel.timeData.year};
+		month=${intel.timeData.month};
+		day=${intel.timeData.day};
+		hour=${intel.timeData.hour};
+		startFogDecay=${intel.weatherData.startFogDecay};
+		forecastFogDecay=${intel.weatherData.forecastFogDecay};
 	};
 
 	class Entities {
+	<#list 0..items?size-1 as item>
+	items=;
+	
+		class Item${item} {
 
-		items=${entities.items};
-
-		class Item${item.itemMainNumber} {
-
-			dataType="Group";
-			side="${entities.side}";
+			dataType="${items[item].dataType}";
+			side="${items[item].side}";
 
 			class Entities {
 				items=1;
+				<#list 0..items[item].entity.items?size-1 as subItem>
+				class Item${subItem} {
 
-				class Item${entities.itemSubNumber} {
-
-					dataType= "${entities.dataType}";
+					dataType= "${items[item].entity.items[subItem].dataType}";
 
 					class PositionInfo {
-						position[]={${entities.position}};
+						position[]={${items[item].entity.items[subItem].positionInfo.position}};
 					};
 
-					side="${entities.side}";
+					side="${items[item].entity.items[subItem].side}";
 
 					class Attributes {
 
-						isPlayer=${entities.isPlayer};
+						isPlayer=${items[item].entity.items[subItem].attributes.isPlayer};
 					};
 
 					type="rhsusf_army_ocp_rifleman_10th";
 
 				};
+				</#list>
 			};
 			class Attributes{};
 		};
+	</#list>
 	};
 };
