@@ -45,7 +45,7 @@ class Mission {
 
 	class Entities {
 	<#list 0..items?size-1 as item>
-	items=;
+	items=${items?size};
 	
 		class Item${item} {
 
@@ -53,8 +53,9 @@ class Mission {
 			side="${items[item].side}";
 
 			class Entities {
-				items=1;
+				items=${items[item].entity.items?size};
 				<#list 0..items[item].entity.items?size-1 as subItem>
+
 				class Item${subItem} {
 
 					dataType= "${items[item].entity.items[subItem].dataType}";
@@ -70,7 +71,7 @@ class Mission {
 						isPlayer=${items[item].entity.items[subItem].attributes.isPlayer};
 					};
 
-					type="rhsusf_army_ocp_rifleman_10th";
+					type="${items[item].entity.items[subItem].type}";
 
 				};
 				</#list>

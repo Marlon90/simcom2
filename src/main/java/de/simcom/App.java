@@ -44,14 +44,14 @@ public class App {
 		item2.setDataType("Object");
 		item2.setPositionInfo(new PositionInfo(new double[] { 2856, 13, 2874 }));
 		item2.setSide("West");
-		item2.setType("classname");
+		item2.setType("rhsusf_army_ocp_rifleman_10th");
 		
 		Item item3 = new Item();
-		item3.setAttributes(new Attributes("1"));
+		item3.setAttributes(new Attributes("0"));
 		item3.setDataType("Object");
 		item3.setPositionInfo(new PositionInfo(new double[] { 2856, 13, 2874 }));
 		item3.setSide("West");
-		item3.setType("classname");
+		item3.setType("rhsusf_army_ocp_rifleman_10th");
 
 		Entities entity = new Entities();
 		Entities entity2 = new Entities();

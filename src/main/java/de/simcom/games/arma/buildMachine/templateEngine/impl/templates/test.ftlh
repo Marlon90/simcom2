@@ -44,7 +44,7 @@ class Mission {
 	};
 
 	class Entities {
-	items=;
+	items=1;
 	
 		class Item0 {
 
@@ -52,7 +52,8 @@ class Mission {
 			side="West";
 
 			class Entities {
-				items=1;
+				items=2;
+
 				class Item0 {
 
 					dataType= "Object";
@@ -71,6 +72,7 @@ class Mission {
 					type="rhsusf_army_ocp_rifleman_10th";
 
 				};
+
 				class Item1 {
 
 					dataType= "Object";
@@ -83,7 +85,7 @@ class Mission {
 
 					class Attributes {
 
-						isPlayer=1;
+						isPlayer=0;
 					};
 
 					type="rhsusf_army_ocp_rifleman_10th";
