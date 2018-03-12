@@ -1,4 +1,4 @@
-package de.simcom.games.arma.buildMachine.data.impl.mission;
+package de.simcom.games.arma.buildMachine.data.impl.mission.intel;
 
 import java.util.Calendar;
 
@@ -19,6 +19,10 @@ public class TimeData {
 	}
 
 	public TimeData(TimeSelector timeSelector) {
+		setTimeSelector(timeSelector);
+	}
+
+	public void setTimeSelector(TimeSelector timeSelector) {
 		switch (timeSelector) {
 		case DATEOFCPU: {
 			this.year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
@@ -41,7 +45,7 @@ public class TimeData {
 			break;
 		}
 	}
-
+	
 	/**
 	 * Returns the year
 	 * 

@@ -1,4 +1,4 @@
-package de.simcom.games.arma.buildMachine.data.impl.mission;
+package de.simcom.games.arma.buildMachine.data.impl.mission.intel;
 
 import de.simcom.games.arma.buildMachine.enums.WeatherSelector;
 
@@ -22,6 +22,10 @@ public class WeatherData {
 	}
 
 	public WeatherData(WeatherSelector weatherSelector, WeatherSelector forecastSelector, String timeOfChanges) {
+		setWeatherData(timeOfChanges, weatherSelector, forecastSelector);
+	}
+	
+	public void setWeatherData(String timeOfChanges, WeatherSelector weatherSelector, WeatherSelector forecastSelector) {
 		this.timeOfChanges = timeOfChanges;
 		switch (weatherSelector) {
 		case GOOD:
@@ -134,7 +138,7 @@ public class WeatherData {
 			break;
 		}
 	}
-
+	
 	public String getTimeOfChanges() {
 		return timeOfChanges;
 	}

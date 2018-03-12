@@ -1,12 +1,12 @@
 version=52;
 class EditorData {
-	
+
 	moveGridStep=1;
 	angleGridStep=0;
 	scaleGridStep=0;
 	autoGroupingDist=0;
 	toggles=1;
-	
+
 	class Camera {
 		pos[]={2951.9795,38.534729,2080.355};
 		dir[]={-0.026856616,-0.44948402,0.89289159};
@@ -23,55 +23,55 @@ class ScenarioData {
 };
 
 class Mission {
-	
+
 	class Intel {
-		
-		timeOfChanges=${weatherData.timeOfChanges};
-		startWeather=${weatherData.startWeather};
-		startWind=${weatherData.startWind};
-		startWaves=${weatherData.startWaves};
-		forecastWeather=${weatherData.forecastWeather};
-		forecastWind=${weatherData.forecastWind};
-		forecastWaves=${weatherData.forecastWaves};
-		wavesForced=${weatherData.wavesForced};
-		windForced=${weatherData.windForced};
-		year=${timeData.year};
-		month=${timeData.month};
-		day=${timeData.day};
-		hour=${timeData.hour};
-		startFogDecay=${weatherData.startFogDecay};
-		forecastFogDecay=${weatherData.forecastFogDecay};
+
+		timeOfChanges=${intel.timeOfChanges};
+		startWeather=${intel.startWeather};
+		startWind=${intel.startWind};
+		startWaves=${intel.startWaves};
+		forecastWeather=${intel.forecastWeather};
+		forecastWind=${intel.forecastWind};
+		forecastWaves=${intel.forecastWaves};
+		wavesForced=${intel.wavesForced};
+		windForced=${intel.windForced};
+		year=${intel.year};
+		month=${intel.month};
+		day=${intel.day};
+		hour=${intel.hour};
+		startFogDecay=${intel.startFogDecay};
+		forecastFogDecay=${intel.forecastFogDecay};
 	};
-	
+
 	class Entities {
-		
-		items=${itemData.items};
-		
-		class Item${itemData.itemMainNumber} {
-			
+
+		items=${entities.items};
+
+		class Item${item.itemMainNumber} {
+
 			dataType="Group";
-			side="${itemData.side}";
-			
+			side="${entities.side}";
+
 			class Entities {
 				items=1;
-				
-				class Item${itemData.itemSubNumber} {
-					
-					dataType= "${itemData.dataType}";
-					
+
+				class Item${entities.itemSubNumber} {
+
+					dataType= "${entities.dataType}";
+
 					class PositionInfo {
-						position[]={${itemData.position}};
+						position[]={${entities.position}};
 					};
-				
-					side="${itemData.side}";
-					
+
+					side="${entities.side}";
+
 					class Attributes {
-					
-						isPlayer=${itemData.isPlayer};
+
+						isPlayer=${entities.isPlayer};
 					};
-					
+
 					type="rhsusf_army_ocp_rifleman_10th";
-					
+
 				};
 			};
 			class Attributes{};

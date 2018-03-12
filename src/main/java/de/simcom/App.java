@@ -6,10 +6,12 @@ import java.sql.SQLException;
 import de.simcom.games.arma.buildMachine.constructor.impl.ConstructorImpl;
 import de.simcom.games.arma.buildMachine.data.Data;
 import de.simcom.games.arma.buildMachine.data.impl.ControlStructuresData;
-import de.simcom.games.arma.buildMachine.data.impl.mission.ItemData;
 import de.simcom.games.arma.buildMachine.data.impl.mission.MissionData;
-import de.simcom.games.arma.buildMachine.data.impl.mission.TimeData;
-import de.simcom.games.arma.buildMachine.data.impl.mission.WeatherData;
+import de.simcom.games.arma.buildMachine.data.impl.mission.entities.Attributes;
+import de.simcom.games.arma.buildMachine.data.impl.mission.entities.Entities;
+import de.simcom.games.arma.buildMachine.data.impl.mission.entities.Item;
+import de.simcom.games.arma.buildMachine.data.impl.mission.entities.PositionInfo;
+import de.simcom.games.arma.buildMachine.data.impl.mission.intel.Intel;
 import de.simcom.games.arma.buildMachine.enums.TemplateType;
 import de.simcom.games.arma.buildMachine.enums.TimeSelector;
 import de.simcom.games.arma.buildMachine.enums.WeatherSelector;
@@ -25,39 +27,21 @@ public class App {
 
 		ConstructorImpl c = new ConstructorImpl();
 		Data data = new ControlStructuresData(TemplateType.IF, "true", "test2");
-		MissionData missionData = new MissionData();
 		
+		Item item = new Item("0");
+		item.setAttributes(new Attributes("1"));
+		item.setDataType("Object");
+		item.setPositionInfo(new PositionInfo(new double[] { 2856, 13, 2874 }));
+		item.setSide("West");
+		item.setType("classname");
 		
-		TimeData timeData = new TimeData(TimeSelector.DATEOFCPU);
-		WeatherData weatherData = new WeatherData(WeatherSelector.NORMAL, WeatherSelector.GOOD, "1800");
-		ItemData itemData = new ItemData();
-		itemData.setItems("1");
-		
-		boolean isPlayer = true;
-		int items = 1;
-		for (int i = 0; i < items; i++ ) {
-			
-			itemData.setDataType("Object");
-			if (isPlayer) {
-				itemData.setIsPlayer("1");
-				isPlayer = false;
-			}
-			itemData.setItemMainNumber(String.valueOf(i));
-			itemData.setItemSubNumber(String.valueOf((i+1)));
-			itemData.setPosition("2856,13,2142");
-			itemData.setSide("WEST");
-		}
-		
-		missionData.setItemData(itemData);
-		missionData.setWeatherData(weatherData);
-		missionData.setTimeData(timeData);
-		
+		MissionData missionData = new MissionData(
+				new Intel(WeatherSelector.NORMAL, WeatherSelector.GOOD, TimeSelector.DATEOFCPU, "1800"),
+				new Entities(item));
+
 		missionData.setTemplateType(TemplateType.MISSION);
-		
+
 		c.doStatementConsole(missionData);
-		
-		
-		
 
 		// Application.launch(View.class, args);
 	}
