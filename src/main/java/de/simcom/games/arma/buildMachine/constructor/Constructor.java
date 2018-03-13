@@ -12,6 +12,9 @@ public interface Constructor {
 
 	void setTemplateEngine() throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,
 			IOException, TemplateException;
+	
+	void setTemplateEngine(String templatePath) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,
+	IOException, TemplateException;
 
 	void doStatement(Data data) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,
 			IOException, TemplateException;

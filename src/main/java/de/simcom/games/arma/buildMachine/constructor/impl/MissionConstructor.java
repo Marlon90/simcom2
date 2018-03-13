@@ -18,6 +18,13 @@ public class MissionConstructor implements Constructor {
 	}
 
 	@Override
+	public void setTemplateEngine(String templatePath) throws TemplateNotFoundException, MalformedTemplateNameException,
+			ParseException, IOException, TemplateException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
 	public void doStatement(Data data) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,
 			IOException, TemplateException {
 

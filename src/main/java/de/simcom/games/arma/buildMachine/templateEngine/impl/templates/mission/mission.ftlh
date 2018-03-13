@@ -46,32 +46,38 @@ class Mission {
 	class Entities {
 	<#list 0..items?size-1 as item>
 	items=${items?size};
-	
+	<#assign i = items[item]>
 		class Item${item} {
-
-			dataType="${items[item].dataType}";
-			side="${items[item].side}";
+	
+			dataType="${i.dataType}";
+			side="${i.side}";
 
 			class Entities {
-				items=${items[item].entity.items?size};
+				items=${i.entity.items?size};
+				
 				<#list 0..items[item].entity.items?size-1 as subItem>
-
+				<#assign j = items[item].entity.items[subItem]>
+				
 				class Item${subItem} {
 
-					dataType= "${items[item].entity.items[subItem].dataType}";
+					dataType= "${j.dataType}";
 
 					class PositionInfo {
-						position[]={${items[item].entity.items[subItem].positionInfo.position}};
+						<#if (j.positionInfo.position)??>
+						position[]={${j.positionInfo.position}};
+						</#if>
 					};
 
-					side="${items[item].entity.items[subItem].side}";
+					side="${j.side}";
 
 					class Attributes {
-
-						isPlayer=${items[item].entity.items[subItem].attributes.isPlayer};
+						
+						<#if (j.attributes.isPlayer) ??>
+						isPlayer=${j.attributes.isPlayer};
+						</#if>
 					};
 
-					type="${items[item].entity.items[subItem].type}";
+					type="${j.type}";
 
 				};
 				</#list>

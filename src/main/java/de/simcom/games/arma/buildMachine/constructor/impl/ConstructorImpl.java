@@ -58,6 +58,12 @@ public class ConstructorImpl implements Constructor {
 		this.cfg = TemplateEngineFactory.getInstance("templates/");
 	}
 
+	@Override
+	public void setTemplateEngine(String templatePath) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,
+			IOException, TemplateException {
+		this.cfg = TemplateEngineFactory.getInstance(templatePath);
+	}
+
 	private void checkCfg() throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,
 			IOException, TemplateException {
 		if (cfg == null) {

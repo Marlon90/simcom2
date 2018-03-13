@@ -30,6 +30,7 @@ public class App {
 			MalformedTemplateNameException, ParseException, IOException, TemplateException {
 
 		ConstructorImpl c = new ConstructorImpl();
+		c.setTemplateEngine("templates/mission");
 		Data data = new ControlStructuresData(TemplateType.IF, "true", "test2");
 
 		Item item = new Item();
@@ -49,7 +50,7 @@ public class App {
 		Item item3 = new Item();
 		item3.setAttributes(new Attributes("0"));
 		item3.setDataType("Object");
-		item3.setPositionInfo(new PositionInfo(new double[] { 2856, 13, 2874 }));
+		//item3.setPositionInfo(new PositionInfo(new double[] { 2856, 13, 2874 }));
 		item3.setSide("West");
 		item3.setType("rhsusf_army_ocp_rifleman_10th");
 
