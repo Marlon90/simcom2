@@ -1,14 +1,23 @@
 package de.simcom.games.arma.buildMachine.data.impl.mission.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Item {
 
-	private String id;
+	private Integer id;
+	private static List<Integer> ids = new ArrayList<Integer>();
 	private Entities entity;
 	private PositionInfo positionInfo;
 	private Attributes attributes;
+	private CustomData customData;
+	private CrewLinks crewLinks;
 	private String dataType;
 	private String side;
 	private String type;
+	private Integer linkId;
+	private String item0;
+	private String item1;
 
 	public Item() {
 	}
@@ -22,7 +31,15 @@ public class Item {
 	}
 
 	public String getId() {
-		return id;
+		if (id != null) {
+			return String.valueOf(id);	
+		}
+		return null;
+	}
+
+	public void setId() {
+		this.id = ids.size() + 1;
+		ids.add(id);
 	}
 
 	public PositionInfo getPositionInfo() {
@@ -63,5 +80,37 @@ public class Item {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public CustomData getCustomData() {
+		return customData;
+	}
+
+	public void setCustomData(CustomData customData) {
+		this.customData = customData;
+	}
+
+	public CrewLinks getCrewLinks() {
+		return crewLinks;
+	}
+
+	public void setCrewLinks(CrewLinks crewLinks) {
+		this.crewLinks = crewLinks;
+	}
+
+	public String getItem0() {
+		return item0;
+	}
+
+	public void setItem0(String item0) {
+		this.item0 = item0;
+	}
+
+	public String getItem1() {
+		return item1;
+	}
+
+	public void setItem1(String item1) {
+		this.item1 = item1;
 	}
 }

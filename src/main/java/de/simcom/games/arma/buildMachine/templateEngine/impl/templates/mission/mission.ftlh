@@ -54,10 +54,8 @@ class Mission {
 
 			class Entities {
 				items=${i.entity.items?size};
-				
 				<#list 0..items[item].entity.items?size-1 as subItem>
-				<#assign j = items[item].entity.items[subItem]>
-				
+				<#assign j = i.entity.items[subItem]>
 				class Item${subItem} {
 
 					dataType= "${j.dataType}";
@@ -72,17 +70,50 @@ class Mission {
 
 					class Attributes {
 						
-						<#if (j.attributes.isPlayer) ??>
+						<#if j.attributes.isPlayer != "0">
 						isPlayer=${j.attributes.isPlayer};
 						</#if>
 					};
-
+					<#if (j.id)??>
+					id = ${j.id};
+					</#if>
 					type="${j.type}";
 
 				};
 				</#list>
 			};
 			class Attributes{};
+			<#if (i.id)??>
+			id = ${i.id};
+			</#if>
+			
+			<#if (i.crewLinks)??>
+			class CrewLinks {
+				<#list 0..i.crewLinks.links.items?size-1 as subItem>
+				<#assign j = i.crewLinks.links.items[subItem]>
+				<#assign sizeOf = items[item].crewLinks.links.items?size>
+				class LinkIDProvider {
+					
+					nextID=${sizeOf};
+				};
+				
+				class Links {
+					items=${sizeOf};
+					
+					class Item${subItem} {
+						
+						linkID=${subItem};
+						item0=${j.item0};
+						item1=${j.item1};
+						
+						class CustomData {
+							role=${j.customData.role};
+						};
+					};
+				};
+			};
+			</#list>
+			</#if>
 		};
 	</#list>
 	};

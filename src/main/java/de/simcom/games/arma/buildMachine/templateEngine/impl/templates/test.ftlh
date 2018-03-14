@@ -37,23 +37,21 @@ class Mission {
 		windForced=0.2;
 		year=2018;
 		month=3;
-		day=12;
-		hour=9;
+		day=14;
+		hour=2;
 		startFogDecay=0.2;
 		forecastFogDecay=0;
 	};
 
 	class Entities {
 	items=1;
-	
 		class Item0 {
-
+	
 			dataType="Object";
 			side="West";
 
 			class Entities {
 				items=2;
-
 				class Item0 {
 
 					dataType= "Object";
@@ -65,34 +63,54 @@ class Mission {
 					side="West";
 
 					class Attributes {
-
+						
 						isPlayer=1;
 					};
-
+					id = 2;
 					type="rhsusf_army_ocp_rifleman_10th";
 
 				};
-
 				class Item1 {
 
 					dataType= "Object";
 
 					class PositionInfo {
-						position[]={2856.013.02874.0};
 					};
 
 					side="West";
 
 					class Attributes {
-
-						isPlayer=0;
+						
 					};
-
+					id = 3;
 					type="rhsusf_army_ocp_rifleman_10th";
 
 				};
 			};
 			class Attributes{};
+			id = 1;
+			
+			class CrewLinks {
+				class LinkIDProvider {
+					
+					nextID=1;
+				};
+				
+				class Links {
+					items=1;
+					
+					class Item0 {
+						
+						linkID=0;
+						item0=0;
+						item1=1;
+						
+						class CustomData {
+							role=1;
+						};
+					};
+				};
+			};
 		};
 	};
 };
