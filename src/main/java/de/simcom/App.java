@@ -18,6 +18,7 @@ import de.simcom.games.arma.buildMachine.data.impl.mission.intel.Intel;
 import de.simcom.games.arma.buildMachine.enums.TemplateType;
 import de.simcom.games.arma.buildMachine.enums.TimeSelector;
 import de.simcom.games.arma.buildMachine.enums.WeatherSelector;
+import de.simcom.games.arma.soundMachine.SoundMachine;
 import freemarker.core.ParseException;
 import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.TemplateException;
@@ -89,6 +90,9 @@ public class App {
 				new Entities(item));
 
 		missionData.setTemplateType(TemplateType.MISSION);
+		
+		SoundMachine sm = new SoundMachine();
+		sm.mergeSound();
 
 		// profileNamespace setVariable ["simcom","simcomString2"];
 		c.doStatementConsole(missionData);
