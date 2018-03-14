@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 /*
  * 		NamespaceReader binary = new NamespaceReader();
 		byte[] bytes = binary.readSmallBinaryFile(
-				"F:\\Program Files (x86)\\Steam\\steamapps\\common\\Arma 3\\Users\\Marlon\\Marlon.vars.Arma3Profile");
+				"F:\\Program Files (x86)\\Steam\\steamapps\\common\\Arma 3\\Users\\X\\X.vars.Arma3Profile");
 		System.out.println(binary.writeSmallBinaryFile(bytes, "simStart", "simEnd"));
  * 
  * */
