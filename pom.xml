@@ -50,5 +50,17 @@
 			<artifactId>controlsfx</artifactId>
 			<version>9.0.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.gagravarr/vorbis-java-core -->
+		<dependency>
+			<groupId>org.gagravarr</groupId>
+			<artifactId>vorbis-java-core</artifactId>
+			<version>0.8</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.googlecode.soundlibs/basicplayer -->
+		<dependency>
+			<groupId>com.googlecode.soundlibs</groupId>
+			<artifactId>basicplayer</artifactId>
+			<version>3.0.0.0</version>
+		</dependency>
 	</dependencies>
 </project>

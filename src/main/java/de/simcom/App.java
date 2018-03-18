@@ -2,6 +2,10 @@ package de.simcom;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import de.simcom.games.arma.buildMachine.constructor.impl.ConstructorImpl;
 import de.simcom.games.arma.buildMachine.data.Data;
@@ -67,7 +71,7 @@ public class App {
 		item4.setId();
 		item4.setItem0("0");
 		item4.setItem1("1");
-		
+
 		CustomData customData = new CustomData();
 		customData.setRole("1");
 		customData.setTurretPath("TurretPath");
@@ -76,26 +80,29 @@ public class App {
 
 		crewLinks.setLinks(links);
 		item.setCrewLinks(crewLinks);
-		
+
 		Entities entity = new Entities();
 		Entities entity2 = new Entities();
 		entity2.addItem(item2);
 		entity2.addItem(item3);
 		item.setEntity(entity2);
 		entity.addItem(item);
-		
-		
+
 		MissionData missionData = new MissionData(
 				new Intel(WeatherSelector.NORMAL, WeatherSelector.GOOD, TimeSelector.DATEOFCPU, "1800"),
 				new Entities(item));
 
 		missionData.setTemplateType(TemplateType.MISSION);
-		
+
 		SoundMachine sm = new SoundMachine();
-		sm.mergeSound();
+		Map<String, Object> dataD = new HashMap<String, Object>();
+		dataD.put("where", "North");
+		dataD.put("what", "enemy");
+		dataD.put("specific", "rpg");
+		sm.contact(dataD);
 
 		// profileNamespace setVariable ["simcom","simcomString2"];
-		c.doStatementConsole(missionData);
+		// c.doStatementConsole(missionData);
 
 		// Application.launch(View.class, args);
 	}
