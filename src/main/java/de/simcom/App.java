@@ -95,11 +95,23 @@ public class App {
 		missionData.setTemplateType(TemplateType.MISSION);
 
 		SoundMachine sm = new SoundMachine();
-		Map<String, Object> dataD = new HashMap<String, Object>();
-		dataD.put("where", "North");
-		dataD.put("what", "enemy");
-		dataD.put("specific", "rpg");
-		sm.contact(dataD);
+		/*
+		 * Map<String, Object> dataD = new HashMap<String, Object>(); dataD.put("where",
+		 * "N"); dataD.put("what", "enemy"); dataD.put("specific", "rpg");
+		 * sm.contact(dataD);
+		 * 
+		 * Thread.sleep((long) sm.getLength());
+		 */
+		List<String> cords = new ArrayList<String>();
+		cords.add("2");
+		cords.add("2");
+		cords.add("1");
+		cords.add("2");
+		cords.add("6");
+		cords.add("5");
+		cords.add("7");
+		cords.add("8");
+		sm.coords(cords);
 
 		// profileNamespace setVariable ["simcom","simcomString2"];
 		// c.doStatementConsole(missionData);

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.sound.sampled.AudioFileFormat;
+import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -14,6 +15,20 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class SoundMachine {
 
 	public SoundMachine() {
+
+	}
+
+	public double getLength() {
+		try {
+
+			AudioInputStream clip1 = AudioSystem.getAudioInputStream(new File("wavAppended.wav"));
+			System.out.println((clip1.getFrameLength() + 0.0) / clip1.getFormat().getFrameRate() * 1000);
+			return (clip1.getFrameLength() + 0.0) / clip1.getFormat().getFrameRate() * 1000 + 1500;
+
+		} catch (UnsupportedAudioFileException | IOException e) {
+			e.printStackTrace();
+			return 0;
+		}
 
 	}
 
