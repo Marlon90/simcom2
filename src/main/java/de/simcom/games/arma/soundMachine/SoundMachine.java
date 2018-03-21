@@ -14,6 +14,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class SoundMachine {
 
+	private int preNumber;
+
 	public SoundMachine() {
 
 	}
@@ -134,24 +136,39 @@ public class SoundMachine {
 	public void coords(List<String> data) {
 		try {
 
-			AudioInputStream audioBuild = getInit("sounds/us/npa/sendingGrid.wav");
+			AudioInputStream audioBuild = getInit("sounds/us/npa/misc/sendingGrid.wav");
 			audioBuild = getInput(audioBuild, "sounds/us/npa/pa/XC.wav");
 
 			int line = 0;
 			int counter = 0;
+			int counter2 = 0;
 			String[] folders = new String[] { "start", "2", "3", "end" };
+			preNumber = Integer.valueOf(data.get(0));
 
 			for (String file : data) {
 				counter = (counter > 3) ? 0 : counter;
+				counter2 = (counter2 > 3) ? 0 : counter2;
 				line = line + 1;
-				audioBuild = getInput(audioBuild, "sounds/us/npa/" + folders[counter] + "\\" + file + ".wav");
+				counter2 = counter2 + 1;
+				int actualNumber = Integer.valueOf(file);
+
+				audioBuild = addEnd(actualNumber, audioBuild, counter2);
+				if (!validationStart(file, counter2).equals("")) {
+					audioBuild = getInput(audioBuild, "sounds/us/npa/numeric/vcal/" + validationStart(file, counter2));
+				}
+
+				audioBuild = getInput(audioBuild, "sounds/us/npa/numeric/" + folders[counter] + "\\" + file + ".wav");
 				counter++;
+
 				if (line == 4) {
 					audioBuild = getInput(audioBuild, "sounds/us/npa/pa/YE.wav");
 				}
+				// audioBuild = getInput(audioBuild, "sounds/us/npa/fx2.wav");
+				preNumber = actualNumber;
+				System.out.println(counter);
 			}
-			audioBuild = getInput(audioBuild, "sounds/us/npa/outC.wav");
-			audioBuild = getInput(audioBuild, "sounds/us/npa/end1.wav");
+			audioBuild = getInput(audioBuild, "sounds/us/npa/misc/outC.wav");
+			audioBuild = getInput(audioBuild, "sounds/us/npa/fx/end1.wav");
 			AudioSystem.write(audioBuild, AudioFileFormat.Type.WAVE, new File("wavAppended.wav"));
 
 			audioBuild.close();
@@ -162,4 +179,49 @@ public class SoundMachine {
 			System.out.println(e.getLocalizedMessage());
 		}
 	}
+
+	private String validationStart(String number, int counter) {
+		int actualNumber = Integer.valueOf(number);
+
+		switch (actualNumber) {
+		case 5:
+			return "f3.wav";
+		case 6:
+		case 7:
+			return "s3.wav";
+		case 9:
+			switch (counter) {
+			case 1:
+				return "";
+
+			case 2:
+				return "n2.wav";
+
+			case 3:
+				return "n3.wav";
+
+			case 4:
+				return "n4.wav";
+
+			default:
+				return "";
+			}
+
+		default:
+			return "";
+		}
+	}
+
+	private AudioInputStream addEnd(int actualNumber, AudioInputStream audioBuild, int counter) {
+		if ((actualNumber != preNumber) && (preNumber != 7)) {
+			try {
+				return getInput(audioBuild,
+						"sounds/us/npa/numeric/vcal/" + validationStart(String.valueOf(preNumber), counter));
+			} catch (UnsupportedAudioFileException | IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return audioBuild;
+	}
+
 }
